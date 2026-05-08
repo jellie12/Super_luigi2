@@ -1,0 +1,51 @@
+/* Simple page with random button placement */
+html, body {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+body {
+  background: url("../MEDIA/hero-image.webp") center/cover no-repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+.button-grid {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.floating-button {
+  position: absolute;
+  padding: 0.9rem 1.4rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 1rem;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+#luigi {
+  top: 60%;
+  left: 40%;
+  width: 70px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  color: transparent;
+  box-shadow: none;
+  padding: 0;
+  z-index: 10;
+  pointer-events: auto;
+}
+.floating-button:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 1);
+}
+@media (max-width: 600px) {
+  .floating-button {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+  }
+}
