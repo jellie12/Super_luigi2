@@ -274,6 +274,8 @@ body {
 /* Inner pages (game, 404) */
 body.page-inner {
   overflow: auto;
+  min-height: 100vh;
+  background: #1a1a2e url("../MEDIA/hero-image.webp") center/cover no-repeat;
 }
 
 .page-content {
@@ -321,4 +323,9 @@ body.page-inner {
 .page-404 .page-content h1 {
   font-size: 6rem;
   line-height: 1;
+}
+
+body.page-404 .page-content {
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
 }
