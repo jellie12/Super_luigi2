@@ -1,25 +1,28 @@
-/* Simple page with random button placement */
+
 html, body {
   margin: 0;
   min-height: 100%;
   width: 100%;
+  cursor: url("../MEDIA/LuigiKart.cur"), auto;
 }
 body {
   background: url("../MEDIA/hero-image.webp") center/cover no-repeat;
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
 }
 .button-grid {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1500;
 }
 .floating-button {
   position: absolute;
   padding: 0.9rem 1.4rem;
   border: none;
   background: rgba(255, 255, 255, 0.9);
-  color: #111;
+  color: #000;
   font-size: 1rem;
   border-radius: 0;
   cursor: pointer;
@@ -30,14 +33,19 @@ body {
   top: 60%;
   left: 40%;
   width: 70px;
-  height: 90px;
+  height: 145px;
   transform: translate(-50%, -50%);
   background: transparent;
   color: transparent;
   box-shadow: none;
   padding: 0;
-  z-index: 10;
+  border: none;
   pointer-events: auto;
+  cursor: pointer;
+}
+#luigi:hover {
+  transform: translate(-50%, -50%);
+  background: transparent;
 }
 .floating-button:hover {
   transform: scale(1.05);
@@ -48,4 +56,269 @@ body {
     font-size: 0.95rem;
     padding: 0.75rem 1rem;
   }
+}
+
+.glow-button-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.menu {
+  filter: url("#shadowed-goo");
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  margin-left: -40px;
+  padding-top: 0;
+  padding-left: 40px;
+  width: 300px;
+  height: 200px;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-align: left;
+  z-index: 2000;
+}
+
+.menu-item,
+.menu-open-button {
+  background: #00bcd4;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  text-align: center;
+  line-height: 80px;
+  transform: translate3d(0, 0, 0);
+  transition: transform ease-out 200ms;
+  text-decoration: none;
+}
+
+.menu-icon-button {
+  background: transparent;
+  overflow: hidden;
+  padding: 0;
+  line-height: 0;
+}
+
+.menu-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.menu-open {
+  display: none;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -12.5px;
+  margin-top: -1.5px;
+  transition: transform 200ms;
+}
+
+.hamburger-1 {
+  transform: translate3d(0, -8px, 0);
+}
+
+.hamburger-2 {
+  transform: translate3d(0, 0, 0);
+}
+
+.hamburger-3 {
+  transform: translate3d(0, 8px, 0);
+}
+
+.menu-open:checked + .menu-open-button .hamburger-1 {
+  transform: translate3d(0, 0, 0) rotate(45deg);
+}
+
+.menu-open:checked + .menu-open-button .hamburger-2 {
+  transform: translate3d(0, 0, 0) scale(0.1, 1);
+}
+
+.menu-open:checked + .menu-open-button .hamburger-3 {
+  transform: translate3d(0, 0, 0) rotate(-45deg);
+}
+
+.menu-item:hover {
+  background: #fff;
+  color: #00bcd4;
+}
+
+.menu-icon-button:hover {
+  background: transparent;
+}
+
+.menu-item:nth-child(3),
+.menu-item:nth-child(4),
+.menu-item:nth-child(5) {
+  transition-duration: 180ms;
+}
+
+.menu-open-button {
+  z-index: 2;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: 400ms;
+  transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  cursor: pointer;
+}
+
+.menu-open-button:hover {
+  transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+  transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+  transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(3) {
+  transition-duration: 200ms;
+  transform: translate3d(-100px, 105px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(4) {
+  transition-duration: 300ms;
+  transform: translate3d(0, 120px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(5) {
+  transition-duration: 400ms;
+  transform: translate3d(100px, 105px, 0);
+}
+
+/* Inner pages (game, 404) */
+body.page-inner {
+  overflow: auto;
+}
+
+.page-content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.page-content h1,
+.page-content p {
+  width: 100%;
+  margin: 0;
+}
+
+.page-content h1 {
+  font-size: 3rem;
+}
+
+.page-content .site-link.glow-on-hover {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin: 0 auto;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.page-message {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.page-404 .page-content h1 {
+  font-size: 6rem;
+  line-height: 1;
 }
