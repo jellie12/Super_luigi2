@@ -1,0 +1,9 @@
+﻿git.exe : To https://github.com/jellie12/Super_luigi2.git
+At C:\Users\Administrator\AppData\Local\Temp\ps-script-a7775242-2986-418b-82a5-a5a9667aa8a9.ps1:112 char:1
++ & $git push -u origin main 2>&1 | Out-File push_out.txt -Encoding utf ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...uper_luigi2.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   aed0531..c7313bb  main -> main
+branch 'main' set up to track 'origin/main'.
